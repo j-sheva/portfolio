@@ -46,9 +46,28 @@
   "inspector": {
     "title": "Inspector",
     "subtitle": "This page is a product. Go on, adjust it.",
-    "gridToggle": "Show the 12-column grid"
+    "gridToggle": "Show the 12-column grid",
+    "viewingAsPill": "Viewing as:",
+    "labels": { "audience": "--viewing-as", "accent": "--accent", "mode": "--mode" },
+    "groupLabels": { "audience": "Viewing as", "accent": "Accent colour", "mode": "Theme", "panel": "Page inspector" },
+    "audiences": { "recruiter": "Recruiter", "founder": "Founder", "engineer": "Engineer" },
+    "accents": { "coral": "Coral", "lime": "Lime", "sky": "Sky", "lilac": "Lilac" },
+    "modes": { "light": "Light", "dark": "Dark" },
+    "code": { "audience": "--viewing-as:", "accent": "--color-accent:", "mode": "--mode:", "grid": "--grid:", "on": "on", "off": "off" }
   },
   "stickyNote": "Psst. Anything that gets a frame on hover can be moved.",
+  "stickers": {
+    "reset": "Reset board",
+    "typeSample": "Aa",
+    "typeName": "Geist 600",
+    "tokenName": "color/accent",
+    "componentName": "button / primary",
+    "componentPrimary": "Hire me",
+    "componentSecondary": "Later",
+    "frames": { "note": "sticky note", "type": "type", "curve": "vector", "token": "token", "comp": "component" }
+  },
+  "cursors": { "yuliia": "Yuliia", "you": "You" },
+  "statsLabel": "Results",
   "stats": [
     { "value": "+25%", "label": "engagement from a tournament feature · Evadav", "tag": "stat / engagement" },
     { "value": "−20%", "label": "onboarding drop-off after redesign · Evadav", "tag": "stat / drop-off" },
@@ -58,6 +77,18 @@
   "work": {
     "title": "Selected work",
     "hoverSticker": "View case study",
+    "sortedFor": "sorted for",
+    "covers": {
+      "nda": {
+        "badge": "under NDA · results only",
+        "metrics": [
+          { "value": "+25%", "label": "engagement" },
+          { "value": "−20%", "label": "drop-off" },
+          { "value": "+18%", "label": "conversion" }
+        ]
+      },
+      "seo": { "source": "source", "checks": ["Summary", "FAQ", "Schema"] }
+    },
     "order": {
       "recruiter": ["roadmap-to-design-system", "evadav", "collectors-hub", "ai-search-website", "qualoo", "aetlas"],
       "founder": ["roadmap-to-design-system", "ai-search-website", "evadav", "aetlas", "collectors-hub", "qualoo"],
@@ -82,7 +113,8 @@
     ],
     "tools": ["Figma", "Claude Code", "Figma MCP", "GA4", "Jira", "HTML / CSS / React"],
     "portrait": "/images/portrait.svg",
-    "portraitCaption": "me · ballpoint on notebook paper"
+    "portraitCaption": "me · ballpoint on notebook paper",
+    "portraitAlt": "A childlike ballpoint pen drawing of Yuliia: wavy shoulder-length hair, sunglasses on her head, thick brows, full lips and a leather jacket"
   },
   "changelog": {
     "title": "Changelog",

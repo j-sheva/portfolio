@@ -1,0 +1,184 @@
+.sticker {
+  position: absolute;
+  touch-action: none;
+}
+
+@media (max-width: 760px) {
+  .sticker {
+    display: none;
+  }
+}
+
+/* The sticky note sits under the Inspector; the rest sit above it. */
+.notePos {
+  left: 40px;
+  top: 36px;
+  z-index: 1;
+}
+
+.typePos {
+  left: 24px;
+  bottom: 36px;
+  z-index: 5;
+}
+
+.curvePos {
+  left: 150px;
+  bottom: -42px;
+  z-index: 5;
+}
+
+.tokenPos {
+  right: 8px;
+  bottom: -36px;
+  z-index: 6;
+}
+
+.compPos {
+  right: -6px;
+  top: -18px;
+  z-index: 6;
+}
+
+.note {
+  width: 200px;
+  background: #ffe27a;
+  color: #1c1a17;
+  border-radius: 4px;
+  padding: 20px 18px 14px;
+  transform: rotate(-4deg);
+  box-shadow: 0 16px 22px -14px rgba(20, 18, 15, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noteText {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.reset {
+  align-self: flex-start;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #1c1a17;
+  background: transparent;
+  color: #1c1a17;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.type {
+  width: 118px;
+  height: 118px;
+  background: #1c1a17;
+  color: #f5f2ea;
+  border-radius: 16px;
+  transform: rotate(-8deg);
+  box-shadow: 0 14px 20px -12px rgba(20, 18, 15, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.typeSample {
+  font-size: 50px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.typeName {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #cfc8ba;
+}
+
+.curve {
+  display: block;
+  filter: drop-shadow(0 8px 10px rgba(20, 18, 15, 0.22));
+}
+
+.token {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #1c1a17;
+  border: 1px solid #ddd7ca;
+  border-radius: 999px;
+  padding: 8px 16px 8px 8px;
+  transform: rotate(5deg);
+  box-shadow: 0 12px 20px -12px rgba(20, 18, 15, 0.45);
+}
+
+.tokenSwatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.tokenText {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.tokenName {
+  color: #5b564d;
+}
+
+.tokenValue {
+  font-weight: 600;
+}
+
+.comp {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #ffffff;
+  border: 1.5px dashed var(--accent-ink);
+  border-radius: 10px;
+  padding: 10px 12px;
+  transform: rotate(-5deg);
+  box-shadow: 0 12px 20px -12px rgba(20, 18, 15, 0.45);
+}
+
+.compName {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #5b564d;
+}
+
+.compButtons {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.compPrimary,
+.compSecondary {
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.compPrimary {
+  background: var(--accent);
+  color: #111214;
+}
+
+.compSecondary {
+  border: 1px solid #ddd7ca;
+  color: #1c1a17;
+}

@@ -1,0 +1,160 @@
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  scroll-margin-top: 16px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 42px);
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.sorted {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  gap: 40px 28px;
+  padding: 16px 10px 20px;
+}
+
+/* Cards stay light in both modes, as in the design. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #ddd7ca;
+  border-radius: var(--radius-card);
+  padding: 14px 14px 22px;
+  color: #1c1a17;
+  text-decoration: none;
+  transform: rotate(var(--rot));
+  box-shadow: 0 2px 4px rgba(20, 18, 15, 0.05), 0 18px 34px -18px rgba(20, 18, 15, 0.35);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
+}
+
+/* On hover/focus the card only straightens: no lift, no scale. */
+.card:hover,
+.card:focus-visible {
+  transform: rotate(0deg);
+}
+
+.sticker {
+  position: absolute;
+  top: -22px;
+  right: -14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  padding: 0 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #111214;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  outline: 2px dashed rgba(17, 18, 20, 0.45);
+  outline-offset: -7px;
+  box-shadow: 0 10px 18px -8px rgba(20, 18, 15, 0.45);
+  transform: scale(0) rotate(-30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.card:hover .sticker,
+.card:focus-visible .sticker {
+  transform: scale(1) rotate(12deg);
+}
+
+/* Touch devices: the sticker is always visible. */
+@media (hover: none) {
+  .sticker {
+    transform: scale(1) rotate(12deg);
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 8px;
+  flex-grow: 1;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #5b564d;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #3f3b35;
+}
+
+.chips {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: var(--radius-small);
+  color: #1c1a17;
+}
+
+@media (max-width: 760px) {
+  .card {
+    margin-top: 0 !important;
+  }
+}
