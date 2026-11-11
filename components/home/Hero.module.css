@@ -113,3 +113,60 @@
     justify-content: center;
   }
 }
+
+/* Animated "Yuliia" cursor gliding between points in the hero. */
+.yCursor {
+  position: absolute;
+  left: 6%;
+  top: 84%;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  pointer-events: none;
+  animation: yglide 12s ease-in-out infinite;
+}
+
+@keyframes yglide {
+  0% { left: 6%; top: 84%; }
+  30% { left: 64%; top: 26%; }
+  52% { left: 64%; top: 26%; }
+  78% { left: 40%; top: 92%; }
+  100% { left: 6%; top: 84%; }
+}
+
+.yLabel,
+.youLabel {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px 999px 999px 999px;
+  white-space: nowrap;
+}
+
+.yLabel {
+  margin-left: 14px;
+  background: var(--ink);
+}
+
+.youLabel {
+  position: absolute;
+  z-index: 80;
+  background: #6d28d9;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yCursor {
+    animation: none;
+  }
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  .yCursor,
+  .youLabel {
+    display: none;
+  }
+}

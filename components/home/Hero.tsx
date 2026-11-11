@@ -1,10 +1,12 @@
-import { getHome, resolveHref, type Audience } from "@/lib/content";
+"use client";
+
+import { useState } from "react";
+import { getHome, resolveHref } from "@/lib/content";
 import { FrameHighlight } from "./Highlight";
-import Inspector, { type InspectorState } from "./Inspector";
+import { useHome } from "./HomeState";
+import Inspector from "./Inspector";
 import Stickers from "./Stickers";
 import styles from "./Hero.module.css";
-
-type Props = InspectorState;
 
 function CtaLink({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
   const isCv = href === "cv";
@@ -15,16 +17,32 @@ function CtaLink({ href, className, children }: { href: string; className: strin
   );
 }
 
-export default function Hero(props: Props) {
-  const { hero, inspector, meta } = getHome();
-  const copy = hero[props.audience as Audience];
+export default function Hero() {
+  const { hero, inspector, meta, cursors } = getHome();
+  const { audience, dragging } = useHome();
+  const [you, setYou] = useState<{ x: number; y: number } | null>(null);
+  const copy = hero[audience];
+
+  // The "You" label follows the visitor's mouse (fine pointers only).
+  const onMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const el = event.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const scale = el.offsetWidth ? rect.width / el.offsetWidth : 1;
+    setYou({ x: (event.clientX - rect.left) / scale, y: (event.clientY - rect.top) / scale });
+  };
 
   return (
-    <section aria-labelledby="hero-title" className={styles.hero}>
+    <section
+      aria-labelledby="hero-title"
+      className={styles.hero}
+      onMouseMove={onMouseMove}
+      onMouseLeave={() => setYou(null)}
+    >
       <div className={styles.copy}>
         <div className={styles.pills}>
           <span className={styles.pill}>
-            {inspector.viewingAsPill} <strong>{inspector.audiences[props.audience]}</strong>
+            {inspector.viewingAsPill} <strong>{inspector.audiences[audience]}</strong>
           </span>
           <span className={styles.pill}>
             <span aria-hidden="true" className={styles.statusDot} />
@@ -47,9 +65,21 @@ export default function Hero(props: Props) {
       </div>
 
       <div className={styles.board}>
-        <Inspector {...props} />
-        <Stickers accent={props.accent} />
+        <Inspector />
+        <Stickers />
       </div>
+
+      <div aria-hidden="true" className={styles.yCursor}>
+        <svg width="22" height="22" viewBox="0 0 24 24">
+          <path d="M4 2l16 9-7 2-3 7z" fill="var(--ink)" stroke="#FFFFFF" strokeWidth="1.5" strokeLinejoin="round" />
+        </svg>
+        <span className={styles.yLabel}>{cursors.yuliia}</span>
+      </div>
+      {you && !dragging ? (
+        <span aria-hidden="true" className={styles.youLabel} style={{ left: Math.round(you.x + 16), top: Math.round(you.y + 20) }}>
+          {cursors.you}
+        </span>
+      ) : null}
     </section>
   );
 }

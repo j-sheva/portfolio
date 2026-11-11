@@ -1,0 +1,71 @@
+.draggable {
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.isDragging {
+  cursor: grabbing;
+}
+
+.frame {
+  position: absolute;
+  inset: -8px;
+  border: 1.5px solid var(--accent);
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 3;
+}
+
+.draggable:hover .frame,
+.isDragging .frame {
+  opacity: 1;
+}
+
+.handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border: 1.5px solid var(--accent);
+}
+
+.topLeft {
+  top: -5px;
+  left: -5px;
+}
+
+.bottomRight {
+  bottom: -5px;
+  right: -5px;
+}
+
+.label {
+  position: absolute;
+  top: -27px;
+  left: -1.5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #111214;
+  background: var(--accent);
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Touch devices: no dragging, so it never blocks scrolling. */
+@media (pointer: coarse) {
+  .draggable {
+    touch-action: auto;
+    cursor: auto;
+    user-select: auto;
+    -webkit-user-select: auto;
+  }
+
+  .frame {
+    display: none;
+  }
+}

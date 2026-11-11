@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { getHome, type Audience, type CaseSlug } from "@/lib/content";
+import { getHome, type CaseSlug } from "@/lib/content";
+import { track } from "@/lib/analytics";
+import { useHome } from "./HomeState";
 import { NdaCover, RoadmapCover, SeoCover } from "./CoverArt";
 import styles from "./WorkGrid.module.css";
 
@@ -29,8 +33,9 @@ function Cover({ cover, alt }: { cover: string; alt?: string }) {
   );
 }
 
-export default function WorkGrid({ audience }: { audience: Audience }) {
+export default function WorkGrid() {
   const { work, inspector } = getHome();
+  const { audience } = useHome();
   const order = work.order[audience] as CaseSlug[];
   const count = String(order.length).padStart(2, "0");
 
@@ -53,6 +58,7 @@ export default function WorkGrid({ audience }: { audience: Audience }) {
               key={slug}
               href={`/work/${slug}`}
               className={styles.card}
+              onClick={() => track("case_open", { slug, source: "card" })}
               style={{ "--rot": `${ROTATION[i]}deg`, marginTop: TOP_OFFSET[i] } as React.CSSProperties}
             >
               <span aria-hidden="true" className={styles.sticker}>

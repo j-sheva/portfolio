@@ -1,28 +1,13 @@
-import { getHome, type Audience } from "@/lib/content";
+"use client";
+
+import { getHome, AUDIENCES } from "@/lib/content";
+import { ACCENTS, ACCENT_HEX, MODES } from "@/lib/theme";
+import { useHome } from "./HomeState";
 import styles from "./Inspector.module.css";
 
-export type Accent = "coral" | "lime" | "sky" | "lilac";
-export type Mode = "light" | "dark";
-
-export const ACCENT_HEX: Record<Accent, string> = {
-  coral: "#FF8A65",
-  lime: "#B8F25B",
-  sky: "#7CC4FF",
-  lilac: "#C3A6FF",
-};
-
-export type InspectorState = {
-  audience: Audience;
-  accent: Accent;
-  mode: Mode;
-  grid: boolean;
-};
-
-export default function Inspector({ audience, accent, mode, grid }: InspectorState) {
+export default function Inspector() {
   const { inspector } = getHome();
-  const audiences = Object.keys(inspector.audiences) as Audience[];
-  const accents = Object.keys(inspector.accents) as Accent[];
-  const modes = Object.keys(inspector.modes) as Mode[];
+  const { audience, accent, mode, grid, setAudience, setAccent, setMode, toggleGrid } = useHome();
 
   return (
     <aside aria-label={inspector.groupLabels.panel} className={styles.panel}>
@@ -34,8 +19,14 @@ export default function Inspector({ audience, accent, mode, grid }: InspectorSta
       <div className={styles.control}>
         <span className={styles.label}>{inspector.labels.audience}</span>
         <div role="group" aria-label={inspector.groupLabels.audience} className={styles.segmented3}>
-          {audiences.map((id) => (
-            <button key={id} type="button" aria-pressed={audience === id} className={styles.segment}>
+          {AUDIENCES.map((id) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={audience === id}
+              className={styles.segment}
+              onClick={() => setAudience(id)}
+            >
               {inspector.audiences[id]}
             </button>
           ))}
@@ -45,7 +36,7 @@ export default function Inspector({ audience, accent, mode, grid }: InspectorSta
       <div className={styles.control}>
         <span className={styles.label}>{inspector.labels.accent}</span>
         <div role="group" aria-label={inspector.groupLabels.accent} className={styles.swatches}>
-          {accents.map((id) => (
+          {ACCENTS.map((id) => (
             <button
               key={id}
               type="button"
@@ -53,6 +44,7 @@ export default function Inspector({ audience, accent, mode, grid }: InspectorSta
               aria-label={`${inspector.groupLabels.accent}: ${inspector.accents[id]}`}
               className={styles.swatch}
               style={{ background: ACCENT_HEX[id] }}
+              onClick={() => setAccent(id)}
             />
           ))}
         </div>
@@ -61,15 +53,21 @@ export default function Inspector({ audience, accent, mode, grid }: InspectorSta
       <div className={styles.control}>
         <span className={styles.label}>{inspector.labels.mode}</span>
         <div role="group" aria-label={inspector.groupLabels.mode} className={styles.segmented2}>
-          {modes.map((id) => (
-            <button key={id} type="button" aria-pressed={mode === id} className={styles.segment}>
+          {MODES.map((id) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={mode === id}
+              className={styles.segment}
+              onClick={() => setMode(id)}
+            >
               {inspector.modes[id]}
             </button>
           ))}
         </div>
       </div>
 
-      <button type="button" aria-pressed={grid} className={styles.toggle}>
+      <button type="button" aria-pressed={grid} className={styles.toggle} onClick={toggleGrid}>
         <span>{inspector.gridToggle}</span>
         <span aria-hidden="true" className={styles.track}>
           <span className={styles.knob} />
