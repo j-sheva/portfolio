@@ -1,0 +1,167 @@
+---
+# Edit any text between the quotes. Keep the quotes, dashes and indentation as they are.
+# Guardrail: Care for Kids appears as "Childcare marketplace". Contract role, year 2026.
+# Never add months or anything that implies how long the contract lasted.
+#
+# Screenshot slots: to show a real image instead of a drawn diagram (or in an empty slot),
+# add `image: "/images/<file>.webp"` plus `alt`, `width` and `height` to that figure.
+# Slots without an image are not shown on the site.
+seo:
+  title: "From scattered requests to a roadmap and a design system — Yuliia Shevchenko"
+  description: "On a childcare marketplace, I turned requests from three teams into one prioritised roadmap, then built a design system for the provider portal and reworked its dashboard."
+nextLabel: "From scattered requests to a roadmap and a design system"
+breadcrumb: "Childcare marketplace · Platform"
+pill: "B2B provider portal · Product strategy"
+title: "From scattered requests to a roadmap and a design system"
+summary: "On an Australian childcare marketplace, I turned requests from three teams into one prioritised roadmap within my first three weeks, then built a design system for the provider portal and reworked its dashboard with the Sales team."
+meta:
+  - label: "Role"
+    value: "Product Designer (contract), with product ownership"
+  - label: "Scope"
+    value: "Roadmap, design system, dashboard & reporting"
+  - label: "Worked with"
+    value: "Product lead, Sales, Marketing, SEO agency, developers"
+  - label: "Tools"
+    value: "Figma, FigJam, Notion, Jira, Claude + Figma MCP"
+  - label: "Year"
+    value: "2026"
+hero:
+  kind: "roadmap-board"
+  text:
+    teams: ["Sales", "Marketing", "SEO agency"]
+    matrix: "Impact × effort"
+    doFirst: "do first"
+    roadmap: "8-week roadmap"
+    weeks: ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"]
+    priorities: ["Priority 1", "Priority 2", "Priority 3", "Priority 4"]
+  figure:
+    caption: "A simplified re-drawing of the process. The real roadmap and its items are confidential."
+evidence:
+  intro: "These changes were still in development, so there are no usage numbers yet. Here is what I delivered and how I would measure it."
+  minTile: 200
+  tiles:
+    - type: "Counted"
+      dark: true
+      size: "lg"
+      value: "3 weeks"
+      label: "from my first day to an 8-week roadmap"
+    - type: "Counted"
+      size: "lg"
+      value: "70+ items"
+      label: "from three teams, triaged into one tracker"
+    - type: "Counted"
+      size: "lg"
+      value: "~24 screens"
+      label: "moved onto one design system, with 59 icons"
+    - type: "Adopted"
+      size: "sm"
+      value: "Library published to the whole organisation"
+      label: "and the roadmap became the team's shared tracker"
+  planned:
+    title: "How I would measure the portal"
+    columns: ["Metric", "Event to track", "Why"]
+    rows:
+      - ["Weekly active providers", "dashboard_viewed", "Shows whether the new dashboard is worth coming back to"]
+      - ["Report usage", "report_opened, report_exported", "Tests the one-page reporting decision"]
+      - ["Design delivery speed", "time from brief to handoff", "Shows what the design system saves the team"]
+sections:
+  - type: "notes"
+    eyebrow: "part 1 · roadmap"
+    title: "Too many good ideas, no single plan"
+    intro: "Marketing, Sales and an external SEO agency each kept their own long list, in different files and formats. Before designing anything, the team needed to agree on what to do first."
+    minWidth: 240
+    notes:
+      - eyebrow: "01 / gather"
+        title: "Collected every request on one board"
+        text: "Calls with each team, their decks and task lists, one FigJam board"
+        color: "#FFE27A"
+      - eyebrow: "02 / score"
+        title: "Scored impact against effort"
+        text: "Same criteria for every item, whoever asked for it"
+        color: "#FFC2D4"
+      - eyebrow: "03 / align"
+        title: "Rebuilt it around four leadership priorities"
+        text: "An 8-week plan; everything else moved to later months"
+        color: "#CFE1FF"
+      - eyebrow: "04 / share"
+        title: "Made it something people use"
+        text: "A slide deck for leadership and a Notion tracker the team could edit"
+        color: "#C6EFD0"
+    slots:
+      - minWidth: 300
+        figures:
+          # TODO(screenshots): the real FigJam board, blurred (16:9). Optional.
+          - caption: "The actual FigJam board, blurred: it shows the scale of the work without revealing the plan."
+  - type: "system"
+    eyebrow: "part 2 · design system"
+    title: "One system under two dozen screens"
+    intro: "The provider portal had grown screen by screen, without shared foundations. I set up a system from variables upward and applied it to the existing screens instead of redesigning them from zero."
+    diagram:
+      primitives:
+        label: "1 · primitives"
+        text: "Raw colours, sizes and spacing"
+      semantic:
+        label: "2 · semantic"
+        names: ["text/primary", "surface/raised", "border/subtle"]
+        text: "Names that describe purpose"
+      type:
+        label: "3 · layout & type"
+        sample: "Aa"
+        text: "Type scale, grid and text styles"
+      components:
+        label: "4 · components"
+        chips: ["Button", "Input", "Badge", "Select"]
+        text: "Buttons, inputs, selects, badges, tags, switches, search, 59 icons"
+      screens:
+        label: "5 · screens"
+        value: "~24"
+        text: "Existing portal screens moved onto the system"
+    figure:
+      caption: "The structure of the system, re-drawn. Portal screens are under NDA."
+      imageCaption: "The structure of the system, re-drawn."
+    slots:
+      - figures:
+          # TODO(screenshots): the provider portal on the new design system (16:9).
+          - caption: "A key portal screen after the move onto the system."
+      - minWidth: 260
+        figures:
+          # TODO(screenshots): variables in Figma (4:3).
+          - caption: "Primitive and semantic collections in the variables panel."
+          # TODO(screenshots): component sheet (4:3).
+          - caption: "Core components with their variants and states."
+          # TODO(screenshots): 59 icons (4:3).
+          - caption: "The icon set as components."
+      - minWidth: 360
+        figures:
+          # TODO(screenshots): before, a portal screen with dummy data (16:10).
+          - caption: "One existing screen before the system."
+          # TODO(screenshots): after, the same screen (16:10).
+          - caption: "The same screen rebuilt on the system."
+    callout:
+      badge: "AI"
+      title: "An AI-assisted workflow, with me in charge of quality"
+      text: "Claude built the Figma variables, styles and components through Figma MCP. I set the requirements, reviewed every step and corrected what it got wrong, from the typeface and the size scale to missing components. That let one designer set up a system of this size within a week."
+  - type: "dashboard"
+    eyebrow: "part 3 · dashboard & reporting"
+    title: "Honest numbers for a low-traffic product"
+    text: "Sales wanted one clear dashboard and a single reporting page for providers. Traffic was low, so every number had to be framed carefully. I explored several options and iterated on them with the Sales lead."
+    list:
+      - "One reporting page instead of two"
+      - "Show the numbers, but show declines only as a trend line"
+      - "No ranking claims the business had not yet promised customers"
+      - "Insight cards built only from data the platform already has, new ones marked BETA"
+    diagram:
+      beta: "BETA"
+    figure:
+      # TODO(screenshots): dashboard, chosen direction (16:10, dummy data) replaces the wireframe.
+      caption: "A simplified wireframe of the dashboard direction, re-drawn without real data."
+      imageCaption: "The dashboard direction after the call with the Sales lead."
+    slots:
+      - figures:
+          # TODO(screenshots): reporting page (16:10, dummy data).
+          - caption: "One reporting page instead of two."
+learnings:
+  - "Gathering input is only half the job. A roadmap starts to work once it is tied to the priorities leadership has already set."
+  - "With AI doing the execution, my value moved to requirements and review. The system is only as good as the corrections."
+  - "With little traffic, how you frame data matters as much as the UI: show what you know, label what you don't."
+---

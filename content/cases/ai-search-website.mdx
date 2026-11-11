@@ -1,0 +1,166 @@
+---
+# Edit any text between the quotes. Keep the quotes, dashes and indentation as they are.
+# Guardrail: Care for Kids appears as "Childcare marketplace". Contract role, year 2026.
+# Never add months or anything that implies how long the contract lasted.
+#
+# Screenshot slots: to show a real image instead of a drawn diagram (or in an empty slot),
+# add `image: "/images/<file>.webp"` plus `alt`, `width` and `height` to that figure.
+# Slots without an image are not shown on the site.
+seo:
+  title: "Getting a marketplace ready for AI search — Yuliia Shevchenko"
+  description: "I audited a childcare marketplace website for AI-search readiness, redesigned key landing pages, and checked the data before the team planned any tests."
+nextLabel: "Getting a marketplace ready for AI search"
+breadcrumb: "Childcare marketplace · Website"
+pill: "Marketing website · SEO, GEO & analytics"
+title: "Getting a marketplace ready for AI search"
+summary: "AI search was taking a share of classic search traffic. I audited the website for AI-search readiness, redesigned key landing pages, and checked the data before the team planned any tests."
+meta:
+  - label: "Role"
+    value: "Product Designer (contract)"
+  - label: "Scope"
+    value: "GEO/SEO audit, landing pages, analytics & tooling"
+  - label: "Tools"
+    value: "GA4, Search Console, Contentsquare, Clarity, Figma, Jira"
+  - label: "Worked with"
+    value: "Marketing, external SEO agency, developers"
+  - label: "Year"
+    value: "2026"
+hero:
+  kind: "ai-answer"
+  text:
+    assistant: "AI assistant"
+    question: "What does childcare cost near me?"
+    source: "source: your page"
+    rows:
+      - label: "Summary from existing data"
+        tag: "added"
+        added: true
+      - label: "FAQ that answers real questions"
+        tag: "added"
+        added: true
+      - label: "Structured data"
+        tag: "Organization · FAQPage"
+  figure:
+    # TODO(screenshots): a redesigned landing page (16:9, full page or above the fold) replaces the drawing.
+    caption: "The idea in one picture: structure a page so AI assistants can understand it and cite it."
+    imageCaption: "One of the redesigned landing pages."
+evidence:
+  minTile: 200
+  tiles:
+    - type: "Counted"
+      size: "lg"
+      value: "5 of 67"
+      label: "brand pages audited as a representative sample"
+    - type: "Counted"
+      size: "lg"
+      value: "36 tasks"
+      label: "from the SEO agency, brought into one tracker"
+    - type: "Adopted"
+      dark: true
+      size: "sm"
+      value: "Audit recommendations went into development"
+      label: "summary text, FAQ blocks and structured data for brand pages"
+    - type: "Adopted"
+      size: "sm"
+      value: "Test plan rebuilt around real users"
+      label: "after I found the traffic was skewed by bots"
+  planned:
+    title: "How I would measure it"
+    columns: ["Metric", "Where to track", "Why"]
+    rows:
+      - ["Visits from AI assistants", "GA4 referral source", "Shows whether pages get cited and clicked"]
+      - ["Landing page → enquiry", "enquiry_submitted by page", "The business goal behind the traffic"]
+      - ["Calculator → next step", "calculator_completed → search_started", "Tests whether the costs page leads to action"]
+sections:
+  - type: "audit"
+    eyebrow: "part 1 · geo audit"
+    title: "Pages search engines could index, but AI could not quote"
+    intro: "I audited 5 representative brand pages out of 67. They had the data but no summary, no answers to common questions and no structured data, so AI assistants had little to understand or cite."
+    columns: ["Element", "Found", "Recommendation"]
+    rows:
+      - element: "Summary text"
+        found: "missing"
+        recommendation: "A template that writes a short summary from data the page already has"
+      - element: "FAQ"
+        found: "missing"
+        recommendation: "FAQ blocks that answer the questions parents actually ask"
+      - element: "Structured data"
+        found: "missing"
+        recommendation: "Schema such as Organization and FAQPage"
+    slots:
+      - minWidth: 300
+        figures:
+          # TODO(screenshots): an audited brand page, annotated (16:10, brand name hidden).
+          - caption: "Where the summary, FAQ and structured data were missing."
+  - type: "landing"
+    eyebrow: "part 2 · landing pages"
+    title: "Pages that lead to a next step"
+    feature:
+      title: "Childcare costs: a calculator that leads somewhere"
+      text: "The calculator gave parents a number and stopped there. I reviewed the product requirements against the live page, wrote an FAQ for both search and AI assistants, and designed three options where the result leads to finding care."
+    diagram:
+      amount: "$ — / day"
+      next: "Next step"
+      cta: "Find care near you"
+      faqs: ["How is the cost calculated?", "What reduces what I pay?", "Which type of care fits me?"]
+    figure:
+      # TODO(screenshots): childcare costs, chosen option (4:3) replaces the wireframe.
+      caption: "The direction, re-drawn as a wireframe. Final designs are under NDA."
+      imageCaption: "The results page that leads to finding care."
+    slots:
+      - minWidth: 220
+        figures:
+          # TODO(screenshots): costs options 1–3 (3:4 each).
+          - caption: "Option 1."
+          - caption: "Option 2."
+          - caption: "Option 3."
+    card:
+      title: "Vacation care and family day care pages"
+      text: "Before redesigning, I looked at GA4 by device, source and behaviour, and compared how people searched for each type of care. The new pages were built around what the data showed."
+    quote:
+      text: "“I like it!”"
+      by: "Marketing team, on the new pages"
+    cardSlots:
+      - minWidth: 360
+        figures:
+          # TODO(screenshots): vacation care page (16:10).
+          - caption: "The new vacation care page."
+          # TODO(screenshots): family day care page (16:10).
+          - caption: "The new family day care page."
+  - type: "flow"
+    eyebrow: "part 3 · data before tests"
+    title: "Check who the traffic is before testing anything"
+    intro: "Sales asked for A/B tests on listing cards, the enquiry flow and postcode search. Before planning them, I checked the analytics for the postcode pages and found that most of the visits looked non-human. A test on that traffic would have measured bots."
+    steps:
+      - label: "01 · data"
+        title: "Clean the data"
+        text: "Separate real visitors from bots"
+      - label: "02 · hypotheses"
+        title: "Write what we expect"
+        text: "One clear hypothesis per idea"
+      - label: "03 · tests"
+        title: "Test one thing at a time"
+        text: "Sequential tests, one per page"
+    slots:
+      - minWidth: 300
+        figures:
+          # TODO(screenshots): GA4 view behind the finding (16:9, numbers blurred). Optional.
+          - caption: "The analytics view that showed most visits were not human."
+  - type: "tools"
+    eyebrow: "part 4 · tools & coordination"
+    title: "Choosing tools and keeping an agency on track"
+    cards:
+      - label: "behaviour analytics"
+        title: "Clarity vs Contentsquare"
+        text: "I compared both and presented the trade-offs live. Leadership chose to pilot Microsoft Clarity."
+      - label: "experimentation"
+        title: "Optimizely and alternatives"
+        text: "A comparison of VWO, PostHog, GrowthBook and others, so the team could pick an A/B setup that fits its traffic."
+      - label: "seo agency"
+        title: "36 tasks, one tracker"
+        text: "Brought the agency's tasks together with a source for each, set a page-speed baseline and checked crawl rules in Search Console."
+learnings:
+  - "AI search changes what a good page is: clear answers, structure and trust signals, not only keywords."
+  - "Check who your traffic is before you test anything. Clean data saves weeks of misleading results."
+  - "Tool choices are product decisions too: start with the simplest tool that answers the question."
+---
