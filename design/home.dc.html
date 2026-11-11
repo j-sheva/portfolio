@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio home — H · Inspector</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}
+.dg{cursor:grab;user-select:none;-webkit-user-select:none}
+.dg.is-drag{cursor:grabbing}
+.dg-frame{position:absolute;inset:-8px;border:1.5px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:3}
+.dg:hover .dg-frame,.dg.is-drag .dg-frame{opacity:1}
+.dg-h{position:absolute;width:8px;height:8px;background:#FFFFFF;border:1.5px solid}
+.dg-label{position:absolute;top:-27px;left:-1.5px;font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;color:#111214;padding:3px 7px;border-radius:4px;white-space:nowrap}
+.wcard{transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease}
+.wcard:hover,.wcard:focus-visible{transform:rotate(0deg) !important}
+.wstick{transform:scale(0) rotate(-30deg);transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.wcard:hover .wstick,.wcard:focus-visible .wstick{transform:scale(1) rotate(12deg)}
+.y-cursor{animation: yglide 12s ease-in-out infinite}
+@keyframes yglide{0%{left:6%;top:84%}30%{left:64%;top:26%}52%{left:64%;top:26%}78%{left:40%;top:92%}100%{left:6%;top:84%}}
+@media (prefers-reduced-motion: reduce){.y-cursor{animation:none}.wcard,.wstick{transition:none}}
+@media (hover: none){.dg{cursor:auto}.wstick{transform:scale(1) rotate(12deg)}}
+@media (max-width: 760px){.deco{display:none !important}}
+</style>
+</helmet>
+<div onPointerMove="{{onDragMove}}" onPointerUp="{{onDragEnd}}" onPointerCancel="{{onDragEnd}}" style="position: relative; font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; color: {{text}}; background-color: {{bg}}; background-image: radial-gradient({{dot}} 1.2px, transparent 1.2px); background-size: 24px 24px; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; overflow-x: hidden;">
+
+<header style="max-width: 1200px; margin: 0 auto; padding: 22px 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+<div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+<span style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">Yuliia Shevchenko</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: {{muted}};">product designer</span>
+</div>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px;">
+<a href="#in-work" style="padding: 10px 14px; font-size: 15px; font-weight: 500; text-decoration: none;">Work</a>
+<a href="#in-about" style="padding: 10px 14px; font-size: 15px; font-weight: 500; text-decoration: none;">About</a>
+<a href="#in-log" style="padding: 10px 14px; font-size: 15px; font-weight: 500; text-decoration: none;">Changelog</a>
+<a href="#in-contact" style="display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 10px; border: 1px solid {{border}}; background: {{surface}}; color: {{text}}; font-size: 15px; font-weight: 600; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7 10l5 5 5-5"></path><path d="M5 20h14"></path></svg>CV</a>
+<a href="mailto:work.uliia@gmail.com" style="padding: 12px 18px; border-radius: 10px; background: {{accent}}; color: {{onAccent}}; font-size: 15px; font-weight: 600; text-decoration: none;">Email me</a>
+</nav>
+</header><section aria-labelledby="in-hero-title" onMouseMove="{{onMove}}" onMouseLeave="{{onLeave}}" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 56px 24px 88px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; height: 744px">
+<div style="flex: 999 1 520px; display: flex; flex-direction: column; gap: 24px; position: relative; z-index: 2;">
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; padding: 6px 10px; border: 1px solid {{border}}; background: {{surface}}; border-radius: 10px;">Viewing as: <strong>{{audLabel}}</strong></span>
+<span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; padding: 6px 10px; border: 1px solid {{border}}; background: {{surface}}; border-radius: 10px;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #22A35A;"></span>Open to full-time roles</span>
+</div>
+<sc-if value="{{isRecruiter}}" hint-placeholder-val="{{ true }}">
+<h1 id="in-hero-title" style="margin: 0; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance;">I turn complex products into clear, usable <span style="position: relative; display: inline-block; padding: 0 8px; border: 1.5px solid {{accent}}; color: {{accentInk}};">systems.<span aria-hidden="true" style="position: absolute; top: -5px; left: -5px; width: 8px; height: 8px; background: {{surface}}; border: 1.5px solid {{accent}};"></span><span aria-hidden="true" style="position: absolute; bottom: -5px; right: -5px; width: 8px; height: 8px; background: {{surface}}; border: 1.5px solid {{accent}};"></span></span></h1>
+<p style="margin: 0; max-width: 50ch; font-size: 18px; line-height: 1.6; color: {{muted}};">Product designer with 5+ years in B2B SaaS, Web3, marketplaces and consumer apps. End to end, from research and roadmap to design systems and handoff. Based in Barcelona, working remotely.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px;"><a href="#in-contact" style="padding: 15px 22px; border-radius: 10px; background: {{text}}; color: {{bg}}; font-size: 16px; font-weight: 600; text-decoration: none;">Download CV</a><a href="#in-work" style="padding: 15px 22px; border-radius: 10px; border: 1px solid {{border}}; background: {{surface}}; font-size: 16px; font-weight: 500; text-decoration: none;">See selected work</a></div>
+</sc-if>
+<sc-if value="{{isFounder}}" hint-placeholder-val="{{ false }}">
+<h1 style="margin: 0; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance;">Your product is complex. Your users shouldn't <span style="position: relative; display: inline-block; padding: 0 8px; border: 1.5px solid {{accent}}; color: {{accentInk}};">feel it.<span aria-hidden="true" style="position: absolute; top: -5px; left: -5px; width: 8px; height: 8px; background: {{surface}}; border: 1.5px solid {{accent}};"></span><span aria-hidden="true" style="position: absolute; bottom: -5px; right: -5px; width: 8px; height: 8px; background: {{surface}}; border: 1.5px solid {{accent}};"></span></span></h1>
+<p style="margin: 0; max-width: 50ch; font-size: 18px; line-height: 1.6; color: {{muted}};">I gather what every team needs, decide what matters first and turn it into a roadmap and a system your team can build on. Carbon markets, Web3 auctions, B2B portals: dense by nature, clear by design.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px;"><a href="mailto:work.uliia@gmail.com" style="padding: 15px 22px; border-radius: 10px; background: {{text}}; color: {{bg}}; font-size: 16px; font-weight: 600; text-decoration: none;">Tell me about your product</a><a href="#in-work" style="padding: 15px 22px; border-radius: 10px; border: 1px solid {{border}}; background: {{surface}}; font-size: 16px; font-weight: 500; text-decoration: none;">See the work</a></div>
+</sc-if>
+<sc-if value="{{isEngineer}}" hint-placeholder-val="{{ false }}">
+<h1 style="margin: 0; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance;">Designs that <span style="position: relative; display: inline-block; padding: 0 8px; border: 1.5px solid {{accent}}; color: {{accentInk}};">survive<span aria-hidden="true" style="position: absolute; top: -5px; left: -5px; width: 8px; height: 8px; background: {{surface}}; border: 1.5px solid {{accent}};"></span><span aria-hidden="true" style="position: absolute; bottom: -5px; right: -5px; width: 8px; height: 8px; background: {{surface}}; border: 1.5px solid {{accent}};"></span></span> implementation.</h1>
+<p style="margin: 0; max-width: 50ch; font-size: 18px; line-height: 1.6; color: {{muted}};">Variables, components, states and edge cases come with the handoff. I write HTML, CSS and React, and build design systems with Claude Code and Figma MCP.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px;"><a href="#in-work" style="padding: 15px 22px; border-radius: 10px; background: {{text}}; color: {{bg}}; font-size: 16px; font-weight: 600; text-decoration: none;">See the systems</a><a href="mailto:work.uliia@gmail.com" style="padding: 15px 22px; border-radius: 10px; border: 1px solid {{border}}; background: {{surface}}; font-size: 16px; font-weight: 500; text-decoration: none;">Email me</a></div>
+</sc-if>
+</div>
+
+<div style="flex: 1 1 440px; position: relative; min-height: 640px; display: flex; align-items: center; justify-content: flex-end;">
+<aside aria-label="Page inspector" style="width: min(380px, 100%); display: flex; flex-direction: column; gap: 20px; padding: 22px; box-sizing: border-box; background: {{surface}}; border: 1px solid {{border}}; border-radius: 16px; box-shadow: 0 1px 2px rgba(20,18,15,0.05), 0 16px 40px rgba(20,18,15,0.08); position: relative; z-index: 3;">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-bottom: 16px; border-bottom: 1px solid {{border}};">
+<p style="margin: 0; font-size: 18px; font-weight: 600;">Inspector</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: {{muted}};">This page is a product. Go on, adjust it.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: {{muted}};">--viewing-as</span>
+<div role="group" aria-label="Viewing as" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+<sc-for list="{{auds}}" as="a" hint-placeholder-count="3">
+<button type="button" onClick="{{a.pick}}" aria-pressed="{{a.pressed}}" style="min-height: 44px; padding: 0 8px; border: 1px solid {{a.bd}}; border-radius: 10px; background: {{a.bg}}; color: {{a.fg}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;">{{a.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: {{muted}};">--accent</span>
+<div role="group" aria-label="Accent colour" style="display: flex; flex-wrap: wrap; gap: 14px; padding: 5px;">
+<sc-for list="{{swatches}}" as="s" hint-placeholder-count="4">
+<button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" aria-label="{{s.aria}}" style="width: 44px; height: 44px; padding: 0; border: none; border-radius: 50%; background: {{s.hex}}; box-shadow: {{s.ring}}; cursor: pointer;"></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: {{muted}};">--mode</span>
+<div role="group" aria-label="Theme" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" style="min-height: 44px; padding: 0 8px; border: 1px solid {{m.bd}}; border-radius: 10px; background: {{m.bg}}; color: {{m.fg}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;">{{m.label}}</button>
+</sc-for>
+</div>
+</div>
+<button type="button" onClick="{{toggleGrid}}" aria-pressed="{{gridPressed}}" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 44px; padding: 0; border: none; background: transparent; color: {{text}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer;">
+<span>Show the 12-column grid</span>
+<span aria-hidden="true" style="position: relative; flex: none; width: 56px; height: 32px; box-sizing: border-box; border-radius: 999px; border: 1px solid {{trackBd}}; background: {{trackBg}}; transition: background 0.25s ease;"><span style="position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: {{knobBg}}; transform: translateX({{knobX}}px); transition: transform 0.25s ease;"></span></span>
+</button>
+<pre style="margin: 0; background: {{raised}}; border-radius: 8px; padding: 14px 16px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; line-height: 1.8; color: {{text}}; overflow-x: auto;"><code><span style="color: {{muted}};">--viewing-as:</span> {{aud}};
+<span style="color: {{muted}};">--color-accent:</span> {{accent}};
+<span style="color: {{muted}};">--mode:</span> {{modeName}};
+<span style="color: {{muted}};">--grid:</span> {{gridLabel}};</code></pre>
+</aside>
+<div class="deco {{d.note.cls}}" onPointerDown="{{d.note.down}}" style="position: absolute; left: 40px; top: 36px; transform: {{d.note.tf}}; z-index: {{d.note.z}}; touch-action: none;">
+<span class="dg-frame" aria-hidden="true" style="border-color: {{accent}};"><span class="dg-h" style="top: -5px; left: -5px; border-color: {{accent}};"></span><span class="dg-h" style="bottom: -5px; right: -5px; border-color: {{accent}};"></span><span class="dg-label" style="background: {{accent}};">sticky note</span></span>
+<div style="width: 200px; box-sizing: border-box; background: #FFE27A; color: #1C1A17; border-radius: 4px; padding: 20px 18px 14px; transform: rotate(-4deg); box-shadow: 0 16px 22px -14px rgba(20,18,15,0.5); display: flex; flex-direction: column; gap: 10px;">
+<p style="margin: 0; font-size: 17px; font-weight: 600; line-height: 1.3;">Psst. Anything that gets a frame on hover can be moved.</p>
+<button type="button" onClick="{{reset}}" style="align-self: flex-start; min-height: 32px; padding: 0 10px; border: 1px solid #1C1A17; background: transparent; color: #1C1A17; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">Reset board</button>
+</div>
+</div>
+<div class="deco {{d.type.cls}}" onPointerDown="{{d.type.down}}" aria-hidden="true" style="position: absolute; left: 24px; bottom: 36px; transform: {{d.type.tf}}; z-index: {{d.type.z}}; touch-action: none;">
+<span class="dg-frame" style="border-color: {{accent}};"><span class="dg-label" style="background: {{accent}};">type</span></span>
+<div style="width: 118px; height: 118px; box-sizing: border-box; background: #1C1A17; color: #F5F2EA; border-radius: 16px; transform: rotate(-8deg); box-shadow: 0 14px 20px -12px rgba(20,18,15,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;"><span style="font-size: 50px; font-weight: 600; letter-spacing: -0.04em; line-height: 1;">Aa</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #CFC8BA;">Geist 600</span></div>
+</div>
+<div class="deco {{d.curve.cls}}" onPointerDown="{{d.curve.down}}" aria-hidden="true" style="position: absolute; left: 150px; bottom: -42px; transform: {{d.curve.tf}}; z-index: {{d.curve.z}}; touch-action: none;">
+<span class="dg-frame" style="border-color: {{accent}};"><span class="dg-label" style="background: {{accent}};">vector</span></span>
+<svg width="160" height="110" viewBox="0 0 160 110" style="display: block; filter: drop-shadow(0 8px 10px rgba(20,18,15,0.22));"><path d="M18 88 C 40 20, 110 100, 142 26" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"></path><path d="M18 88 C 40 20, 110 100, 142 26" fill="none" stroke="#1C1A17" stroke-width="4" stroke-linecap="round"></path><path d="M18 88 L40 20 M142 26 L110 100" stroke="{{accentInk}}" stroke-width="1.5"></path><circle cx="40" cy="20" r="5" fill="#FFFFFF" stroke="{{accentInk}}" stroke-width="2"></circle><circle cx="110" cy="100" r="5" fill="#FFFFFF" stroke="{{accentInk}}" stroke-width="2"></circle><rect x="12" y="82" width="12" height="12" fill="#FFFFFF" stroke="#1C1A17" stroke-width="2"></rect><rect x="136" y="20" width="12" height="12" fill="#FFFFFF" stroke="#1C1A17" stroke-width="2"></rect></svg>
+</div>
+<div class="deco {{d.token.cls}}" onPointerDown="{{d.token.down}}" aria-hidden="true" style="position: absolute; right: 8px; bottom: -36px; transform: {{d.token.tf}}; z-index: {{d.token.z}}; touch-action: none;">
+<span class="dg-frame" style="border-color: {{accent}};"><span class="dg-label" style="background: {{accent}};">token</span></span>
+<div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; color: #1C1A17; border: 1px solid #DDD7CA; border-radius: 999px; padding: 8px 16px 8px 8px; transform: rotate(5deg); box-shadow: 0 12px 20px -12px rgba(20,18,15,0.45);"><span style="width: 30px; height: 30px; border-radius: 50%; background: {{accent}};"></span><span style="display: flex; flex-direction: column; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; line-height: 1.35;"><span style="color: #5B564D;">color/accent</span><span style="font-weight: 600;">{{accent}}</span></span></div>
+</div>
+<div class="deco {{d.comp.cls}}" onPointerDown="{{d.comp.down}}" aria-hidden="true" style="position: absolute; right: -6px; top: -18px; transform: {{d.comp.tf}}; z-index: {{d.comp.z}}; touch-action: none;">
+<span class="dg-frame" style="border-color: {{accent}};"><span class="dg-label" style="background: {{accent}};">component</span></span>
+<div style="display: flex; flex-direction: column; gap: 6px; background: #FFFFFF; border: 1.5px dashed {{accentInk}}; border-radius: 10px; padding: 10px 12px; transform: rotate(-5deg); box-shadow: 0 12px 20px -12px rgba(20,18,15,0.45);"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; color: #5B564D;">button / primary</span><span style="display: inline-flex; gap: 6px;"><span style="padding: 6px 12px; border-radius: 10px; background: {{accent}}; color: #111214; font-size: 12px; font-weight: 600;">Hire me</span><span style="padding: 6px 12px; border-radius: 10px; border: 1px solid #DDD7CA; color: #1C1A17; font-size: 12px; font-weight: 600;">Later</span></span></div>
+</div>
+</div>
+
+<div class="y-cursor deco" aria-hidden="true" style="position: absolute; left: 6%; top: 84%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; pointer-events: none; z-index: 70;">
+<svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="{{cursorFill}}" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+<span style="margin-left: 14px; background: {{cursorFill}}; color: #FFFFFF; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 4px 999px 999px 999px; white-space: nowrap;">Yuliia</span>
+</div>
+<sc-if value="{{showYou}}" hint-placeholder-val="{{ false }}">
+<span class="deco" aria-hidden="true" style="position: absolute; left: {{youX}}px; top: {{youY}}px; background: #6D28D9; color: #FFFFFF; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 4px 999px 999px 999px; pointer-events: none; white-space: nowrap; z-index: 80;">You</span>
+</sc-if>
+</section><sc-if value="{{grid}}" hint-placeholder-val="{{ false }}">
+<div aria-hidden="true" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 50; pointer-events: none;"><div style="height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;"><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span><span style="background: {{gridTint}};"></span></div></div>
+</sc-if>
+
+
+
+
+
+<section aria-label="Results" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 40px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 28px;">
+<sc-for list="{{stats}}" as="st" hint-placeholder-count="4">
+<div class="{{st.cls}}" onPointerDown="{{st.down}}" style="position: relative; transform: {{st.tf}}; z-index: {{st.z}}; touch-action: none; background: {{st.bgc}}; border-top: 1px solid {{st.bd}}; padding-top: 18px; display: flex; flex-direction: column; gap: 6px;">
+<span class="dg-frame" aria-hidden="true" style="border-color: {{st.acc}};"><span class="dg-h" style="top: -5px; left: -5px; border-color: {{st.acc}};"></span><span class="dg-h" style="bottom: -5px; right: -5px; border-color: {{st.acc}};"></span><span class="dg-label" style="background: {{st.acc}};">{{st.tag}}</span></span>
+<span style="font-size: 44px; font-weight: 600; letter-spacing: -0.03em; color: {{st.ink}};">{{st.value}}</span>
+<span style="font-size: 15px; line-height: 1.45; color: {{st.muted}};">{{st.label}}</span>
+</div>
+</sc-for>
+</section>
+
+<section id="in-work" aria-labelledby="in-work-title" style="max-width: 1200px; margin: 0 auto; padding: 56px 24px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px;">
+<h2 id="in-work-title" style="margin: 0; font-size: clamp(30px, 3vw, 42px); letter-spacing: -0.03em; font-weight: 600;">Selected work</h2>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: {{muted}};">sorted for {{audLabel}} · 06</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 40px 28px; padding: 16px 10px 20px;">
+<sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+<a href="#in-work" class="wcard" style="position: relative; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #DDD7CA; border-radius: 16px; padding: 14px 14px 22px; color: #1C1A17; text-decoration: none; transform: rotate({{p.rot}}deg); margin-top: {{p.mt}}px; box-shadow: 0 2px 4px rgba(20,18,15,0.05), 0 18px 34px -18px rgba(20,18,15,0.35);">
+<span class="wstick" aria-hidden="true" style="position: absolute; top: -22px; right: -14px; z-index: 2; display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; border-radius: 50%; background: {{p.acc}}; color: #111214; font-size: 13px; font-weight: 800; line-height: 1.15; letter-spacing: 0.04em; text-align: center; text-transform: uppercase; outline: 2px dashed rgba(17,18,20,0.45); outline-offset: -7px; box-shadow: 0 10px 18px -8px rgba(20,18,15,0.45);">View<br>case<br>study</span>
+<sc-if value="{{p.hasImg}}" hint-placeholder-val="{{ false }}"><img src="{{p.img}}" alt="{{p.alt}}" style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px;"></sc-if>
+<sc-if value="{{p.isRoadmap}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="aspect-ratio: 16 / 9; border-radius: 10px; background: #FFF4EF; display: flex; gap: 16px; align-items: center; padding: 20px 22px; box-sizing: border-box; overflow: hidden;"><div style="flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px;"><span style="height: 30px; border-radius: 2px; background: #FFE27A; transform: rotate(-3deg);"></span><span style="height: 30px; border-radius: 2px; background: #FFC2D4; transform: rotate(2deg);"></span><span style="height: 30px; border-radius: 2px; background: #CFE1FF; transform: rotate(-1deg);"></span><span style="height: 30px; border-radius: 2px; background: #FFC2D4; transform: rotate(3deg);"></span><span style="height: 30px; border-radius: 2px; background: #FFE27A; transform: rotate(-2deg);"></span><span style="height: 30px; border-radius: 2px; background: #C6EFD0; transform: rotate(1deg);"></span></div><div style="flex: 1.3; display: flex; flex-direction: column; gap: 8px;"><span style="height: 12px; width: 70%; border-radius: 4px; background: #FF8A65;"></span><span style="height: 12px; width: 50%; margin-left: 22%; border-radius: 4px; background: #CFE1FF;"></span><span style="height: 12px; width: 38%; border-radius: 4px; background: #C6EFD0;"></span><span style="height: 12px; width: 55%; margin-left: 40%; border-radius: 4px; background: #FFE27A;"></span></div></div></sc-if>
+<sc-if value="{{p.isSeo}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="aspect-ratio: 16 / 9; border-radius: 10px; background: #EEF3FF; display: flex; gap: 14px; align-items: center; padding: 20px; box-sizing: border-box; overflow: hidden;"><div style="flex: 1; background: #FFFFFF; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 7px;"><span style="height: 6px; width: 92%; border-radius: 3px; background: #C9D6F0;"></span><span style="height: 6px; width: 74%; border-radius: 3px; background: #C9D6F0;"></span><span style="align-self: flex-start; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; padding: 2px 7px; border-radius: 999px; background: #FF8A65; color: #111214;">source</span></div><div style="flex: 1; display: flex; flex-direction: column; gap: 6px; font-size: 11px;"><span style="background: #FFFFFF; border-radius: 6px; padding: 7px 9px; display: flex; justify-content: space-between;">Summary<span style="color: #15803D;">✓</span></span><span style="background: #FFFFFF; border-radius: 6px; padding: 7px 9px; display: flex; justify-content: space-between;">FAQ<span style="color: #15803D;">✓</span></span><span style="background: #FFFFFF; border-radius: 6px; padding: 7px 9px; display: flex; justify-content: space-between;">Schema<span style="color: #15803D;">✓</span></span></div></div></sc-if>
+<sc-if value="{{p.isNda}}" hint-placeholder-val="{{ false }}"><div style="aspect-ratio: 16 / 9; border-radius: 10px; background: #1C1A17; color: #F5F2EA; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 20px; box-sizing: border-box;"><span style="align-self: flex-start; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; padding: 3px 9px; border-radius: 999px; border: 1px solid #5B564D; color: #CFC8BA;">under NDA · results only</span><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;"><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: #FF8A65;">+25%</span><span style="font-size: 12px; color: #CFC8BA;">engagement</span></span><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: #FF8A65;">−20%</span><span style="font-size: 12px; color: #CFC8BA;">drop-off</span></span><span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: #FF8A65;">+18%</span><span style="font-size: 12px; color: #CFC8BA;">conversion</span></span></div></div></sc-if>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 0 8px; flex-grow: 1;">
+<div style="display: flex; justify-content: space-between; gap: 12px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: #5B564D;"><span>{{p.kind}}</span><span>{{p.num}}</span></div>
+<h3 style="margin: 0; font-size: 22px; letter-spacing: -0.02em; font-weight: 600;">{{p.title}}</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #3F3B35;">{{p.desc}}</p>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px;">
+<sc-for list="{{p.chips}}" as="c" hint-placeholder-count="2"><span style="font-size: 12px; font-weight: 600; padding: 5px 9px; border-radius: 8px; background: {{c.bg}}; color: #1C1A17;">{{c.label}}</span></sc-for>
+</div>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section id="in-about" aria-labelledby="in-about-title" style="max-width: 1200px; margin: 0 auto; padding: 96px 24px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px 80px; align-items: center;">
+<figure style="flex: 0 1 340px; max-width: 100%; margin: 0; position: relative; transform: rotate(-3deg);">
+<span aria-hidden="true" style="position: absolute; top: -14px; left: 50%; width: 110px; height: 28px; margin-left: -55px; z-index: 2; background: rgba(255, 226, 122, 0.8); transform: rotate(2deg);"></span>
+<div style="box-sizing: border-box; padding: 18px 16px 14px 44px; border-radius: 6px; background-color: #FBFAF4; background-image: linear-gradient(90deg, transparent 30px, #E8A3A3 30px, #E8A3A3 32px, transparent 32px), repeating-linear-gradient(#FBFAF4 0 27px, #CBD8EE 27px 28px); box-shadow: 0 22px 40px -22px rgba(20,18,15,0.6);">
+<svg role="img" aria-label="A childlike ballpoint pen drawing of Yuliia: wavy shoulder-length hair, sunglasses on her head, thick brows, full lips and a leather jacket" viewBox="0 0 300 360" style="display: block; width: 100%; height: auto;">
+<g fill="none" stroke="#1F3A93" stroke-linecap="round" stroke-linejoin="round">
+<path d="M100 122 C 98 84, 128 64, 152 66 C 178 64, 206 84, 202 124" stroke-width="2.4"></path>
+<path d="M112 94 c 4 -10, 15 -9, 13 1 M134 80 c 5 -9, 16 -6, 12 3 M158 78 c 6 -8, 16 -3, 11 5 M180 88 c 7 -6, 15 1, 8 8" stroke-width="2"></path>
+<path d="M106 104 C 82 124, 94 152, 80 176 C 68 200, 94 214, 80 240 C 68 262, 92 280, 82 304" stroke-width="2.4"></path>
+<path d="M98 146 C 86 170, 104 188, 92 208 C 82 230, 106 246, 96 272" stroke-width="2"></path>
+<path d="M88 196 c -8 4, -6 14, 2 12 M84 252 c -9 3, -7 13, 2 11 M90 286 c -8 4, -5 13, 3 10" stroke-width="1.8"></path>
+<path d="M196 104 C 220 124, 208 152, 222 176 C 234 200, 208 214, 222 240 C 234 262, 210 280, 220 304" stroke-width="2.4"></path>
+<path d="M204 146 C 216 170, 198 188, 210 208 C 220 230, 196 246, 206 272" stroke-width="2"></path>
+<path d="M214 196 c 8 4, 6 14, -2 12 M218 252 c 9 3, 7 13, -2 11 M212 286 c 8 4, 5 13, -3 10" stroke-width="1.8"></path>
+<path d="M150 96 C 114 96, 104 130, 106 166 C 108 208, 126 240, 150 246 C 174 240, 194 208, 196 166 C 198 130, 186 96, 150 96 Z" stroke-width="2.4"></path>
+<path d="M104 112 C 118 102, 134 98, 150 99 C 166 98, 184 102, 198 114" stroke-width="2"></path>
+<ellipse cx="128" cy="80" rx="19" ry="11" fill="#1F3A93" fill-opacity="0.85" stroke-width="2"></ellipse>
+<ellipse cx="174" cy="80" rx="19" ry="11" fill="#1F3A93" fill-opacity="0.85" stroke-width="2"></ellipse>
+<path d="M147 79 Q 151 74, 155 79" stroke-width="2"></path>
+<path d="M122 82 l 8 -4" stroke="#FBFAF4" stroke-width="2"></path>
+<path d="M168 82 l 8 -4" stroke="#FBFAF4" stroke-width="2"></path>
+<path d="M120 142 C 127 133, 139 133, 143 139" stroke-width="4.2"></path>
+<path d="M157 139 C 161 133, 173 133, 180 142" stroke-width="4.2"></path>
+<path d="M121 157 C 127 149, 138 149, 143 157 C 137 162, 127 162, 121 157 Z" stroke-width="2"></path>
+<path d="M157 157 C 162 149, 173 149, 179 157 C 173 162, 163 162, 157 157 Z" stroke-width="2"></path>
+<circle cx="132" cy="156" r="3.2" fill="#1F3A93" stroke="none"></circle>
+<circle cx="168" cy="156" r="3.2" fill="#1F3A93" stroke="none"></circle>
+<path d="M120 152 l -4 -3 M180 152 l 4 -3" stroke-width="1.6"></path>
+<path d="M150 160 C 147 175, 144 185, 149 189 C 152 191, 156 189, 157 186" stroke-width="2"></path>
+<path d="M134 208 C 140 200, 146 202, 150 205 C 154 202, 160 200, 166 208" stroke-width="2.2"></path>
+<path d="M134 208 C 140 222, 160 222, 166 208" stroke-width="2.2"></path>
+<path d="M137 208 C 144 211, 156 211, 163 208" stroke-width="1.6"></path>
+<circle cx="124" cy="176" r="1.1" fill="#1F3A93" stroke="none"></circle>
+<circle cx="130" cy="180" r="1.1" fill="#1F3A93" stroke="none"></circle>
+<circle cx="119" cy="182" r="1.1" fill="#1F3A93" stroke="none"></circle>
+<circle cx="176" cy="176" r="1.1" fill="#1F3A93" stroke="none"></circle>
+<circle cx="170" cy="180" r="1.1" fill="#1F3A93" stroke="none"></circle>
+<circle cx="181" cy="182" r="1.1" fill="#1F3A93" stroke="none"></circle>
+<circle cx="104" cy="186" r="5" stroke-width="1.8"></circle>
+<circle cx="196" cy="186" r="5" stroke-width="1.8"></circle>
+<path d="M138 244 L 136 278 M162 244 L 164 278" stroke-width="2.2"></path>
+<path d="M136 278 C 110 286, 82 300, 66 344 M164 278 C 190 286, 218 300, 234 344" stroke-width="2.4"></path>
+<path d="M136 278 L 150 312 L 164 278 M122 290 L 142 334 M178 290 L 158 334" stroke-width="2.2"></path>
+<path d="M112 312 l 8 4 M190 312 l -8 4 M100 330 l 9 3 M200 330 l -9 3" stroke-width="1.6"></path>
+<path d="M250 54 l 6 14 l 14 2 l -11 9 l 4 14 l -13 -8 l -13 8 l 4 -14 l -11 -9 l 14 -2 Z" stroke-width="1.8"></path>
+<path d="M40 70 c 10 -6, 20 4, 10 10 c -10 6, -18 -6, -6 -12 c 14 -6, 26 8, 14 18" stroke-width="1.6"></path>
+<path d="M244 230 C 256 220, 268 222, 272 236 M266 228 l 6 8 l -9 3" stroke-width="1.8"></path>
+</g>
+</svg>
+</div>
+<figcaption style="margin-top: 14px; text-align: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: {{muted}};">me · ballpoint on notebook paper</figcaption>
+</figure>
+<div style="flex: 999 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 22px;">
+<h2 id="in-about-title" style="margin: 0; font-size: clamp(40px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance;">I design with <span style="padding: 0 0.14em; border-radius: 0.14em; background: {{accent}}; color: {{onAccent}};">logic</span>, not just visuals.</h2>
+<p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.6; color: {{muted}};">I design web and mobile products for complex domains: B2B SaaS, marketplaces, Web3 platforms and AI tools. The focus is always the same: take something technically dense and make it feel obvious to the person using it.</p>
+<p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.6; color: {{muted}};">Outside of work I customise clothes, and I've travelled to 36 countries. Both keep shaping how I think about people, behaviour and detail.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 6px;"><span style="font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 8px; background: {{raised}};">Figma</span><span style="font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 8px; background: {{raised}};">Claude Code</span><span style="font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 8px; background: {{raised}};">Figma MCP</span><span style="font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 8px; background: {{raised}};">GA4</span><span style="font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 8px; background: {{raised}};">Jira</span><span style="font-size: 13px; font-weight: 500; padding: 6px 10px; border-radius: 8px; background: {{raised}};">HTML / CSS / React</span></div>
+</div>
+</section>
+
+<section id="in-log" aria-labelledby="in-log-title" style="max-width: 1200px; margin: 0 auto; padding: 104px 24px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px;">
+<h2 id="in-log-title" style="margin: 0; font-size: clamp(30px, 3vw, 42px); letter-spacing: -0.03em; font-weight: 600;">Changelog</h2>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: {{muted}};">five years, newest first</span>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; border-top: 1px solid {{border}};">
+<sc-for list="{{log}}" as="l" hint-placeholder-count="6">
+<li style="display: grid; grid-template-columns: 64px 130px minmax(0, 1fr); gap: 8px 20px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid {{l.bd}};">
+<span style="justify-self: start; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: {{l.tagBg}}; color: {{l.tagFg}};">{{l.v}}</span>
+<span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: {{l.mu}};">{{l.when}}</span>
+<span style="display: flex; flex-direction: column; gap: 4px;"><span style="font-size: 18px; font-weight: 600;">{{l.role}}</span><span style="font-size: 15px; line-height: 1.5; color: {{l.mu}};">{{l.text}}</span></span>
+</li>
+</sc-for>
+</ol>
+</section>
+
+<section id="in-contact" aria-labelledby="in-contact-title" style="margin-top: 104px; border-top: 1px solid {{border}};">
+<div style="max-width: 1200px; margin: 0 auto; padding: 104px 24px 112px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px;">
+<h2 id="in-contact-title" style="margin: 0; font-size: clamp(44px, 6.2vw, 88px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance;">Let's ship something <span style="padding: 0 0.14em; border-radius: 0.14em; background: {{accent}}; color: {{onAccent}};">clear</span>.</h2>
+<p style="margin: 0; max-width: 560px; font-size: 18px; line-height: 1.6; color: {{muted}};">Open to full-time remote product design roles.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
+<a href="mailto:work.uliia@gmail.com" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 22px; border-radius: 12px; background: {{accent}}; color: {{onAccent}}; font-size: 16px; font-weight: 600; text-decoration: none;">work.uliia@gmail.com</a>
+<a href="#in-contact" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 22px; border-radius: 12px; background: {{text}}; color: {{bg}}; font-size: 16px; font-weight: 600; text-decoration: none;">Download CV</a>
+<a href="https://www.linkedin.com/in/uliia-shevchenko/" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 22px; border-radius: 12px; border: 1px solid {{border}}; font-size: 16px; font-weight: 500; text-decoration: none;">LinkedIn</a>
+<a href="https://www.behance.net/yuliiashevche4" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 22px; border-radius: 12px; border: 1px solid {{border}}; font-size: 16px; font-weight: 500; text-decoration: none;">Behance</a>
+</div>
+</div>
+</section>
+
+<footer style="background: #0B0D0C; color: #A2AAA3; border-top: 1px solid rgba(236,239,234,0.16);">
+<div style="max-width: 1200px; margin: 0 auto; padding: 10px 24px; min-height: 64px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 28px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; line-height: 1.4;">
+<span style="display: inline-flex; align-items: center; gap: 8px; color: #ECEFEA;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #5BD98A;"></span>Available</span>
+<span>Barcelona · CET</span>
+<a href="mailto:work.uliia@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; color: #ECEFEA; text-decoration: none;">work.uliia@gmail.com</a>
+<span>© Yuliia Shevchenko 2026</span>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: "light", accent: "coral", aud: "recruiter", grid: false, mx: 0, my: 0, inside: false, pos: {}, drag: null, top: null };
+    this._drag = null;
+  }
+  renderVals() {
+    var st = this.state || {};
+    var self = this;
+    var modeId = st.mode || "light";
+    var accentId = st.accent || "coral";
+    var aud = st.aud || "recruiter";
+    var gridOn = !!st.grid;
+    var ACC = {
+      coral: { name: "Coral", hex: "#FF8A65", ink: "#C2410C", rgb: "255,138,101" },
+      lime: { name: "Lime", hex: "#B8F25B", ink: "#4D7C0F", rgb: "184,242,91" },
+      sky: { name: "Sky", hex: "#7CC4FF", ink: "#0369A1", rgb: "124,196,255" },
+      lilac: { name: "Lilac", hex: "#C3A6FF", ink: "#6D28D9", rgb: "195,166,255" }
+    };
+    var dark = modeId === "dark";
+    var t = dark
+      ? { bg: "#121316", surface: "#1A1B1F", raised: "#24262B", border: "#2F3137", text: "#ECECEE", muted: "#A3A5AD", dot: "#2C2E34" }
+      : { bg: "#F5F2EA", surface: "#FFFFFF", raised: "#EFEBE1", border: "#DDD7CA", text: "#1C1A17", muted: "#5B564D", dot: "#D3CBBA" };
+    var acc = ACC[accentId] || ACC.coral;
+    t.accent = acc.hex;
+    t.accentInk = dark ? acc.hex : acc.ink;
+    t.cursorFill = acc.ink;
+    t.onAccent = "#111214";
+
+    var seg = function (current, id) {
+      var on = current === id;
+      return { bg: on ? t.text : "transparent", fg: on ? t.bg : t.text, bd: on ? t.text : t.border, pressed: on ? "true" : "false" };
+    };
+    var LABELS = { recruiter: "Recruiter", founder: "Founder", engineer: "Engineer" };
+    var auds = ["recruiter", "founder", "engineer"].map(function (id) {
+      return Object.assign({ id: id, label: LABELS[id] }, seg(aud, id), { pick: function () { self.setState({ aud: id }); } });
+    });
+    var modes = [{ id: "light", label: "Light" }, { id: "dark", label: "Dark" }].map(function (o) {
+      return Object.assign({}, o, seg(modeId, o.id), { pick: function () { self.setState({ mode: o.id }); } });
+    });
+    var swatches = Object.keys(ACC).map(function (id) {
+      var on = id === accentId;
+      return {
+        id: id, hex: ACC[id].hex, aria: "Accent colour: " + ACC[id].name,
+        pressed: on ? "true" : "false",
+        ring: on ? "0 0 0 3px " + t.surface + ", 0 0 0 5px " + t.text : "0 0 0 1px " + t.border,
+        pick: function () { self.setState({ accent: id }); }
+      };
+    });
+
+    var pos = st.pos || {};
+    var P = function (k) { return pos[k] || { x: 0, y: 0 }; };
+    var startDrag = function (k) {
+      return function (e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        var tg = e.target;
+        if (tg && tg.closest && tg.closest("button, a, input")) return;
+        var el = e.currentTarget;
+        if (!el) return;
+        var r = el.getBoundingClientRect();
+        var s = el.offsetWidth ? r.width / el.offsetWidth : 1;
+        var p = P(k);
+        self._drag = { k: k, sx: e.clientX, sy: e.clientY, ox: p.x, oy: p.y, s: s || 1 };
+        try { el.setPointerCapture(e.pointerId); } catch (err) {}
+        if (e.preventDefault) e.preventDefault();
+        self.setState({ drag: k, top: k });
+      };
+    };
+    var dk = function (k, base) {
+      var p = P(k);
+      return {
+        tf: "translate(" + Math.round(p.x) + "px, " + Math.round(p.y) + "px)",
+        z: st.drag === k ? 60 : (st.top === k ? 40 : base),
+        cls: st.drag === k ? "dg is-drag" : "dg",
+        down: startDrag(k)
+      };
+    };
+
+    var d = { note: dk("note", 1), type: dk("type", 5), curve: dk("curve", 5), token: dk("token", 6), comp: dk("comp", 6) };
+    if (st.drag !== "note") { d.note.z = 1; }
+
+    var stats = [
+      { k: "s1", value: "+25%", label: "engagement from a tournament feature · Evadav", tag: "stat / engagement" },
+      { k: "s2", value: "−20%", label: "onboarding drop-off after redesign · Evadav", tag: "stat / drop-off" },
+      { k: "s3", value: "+30%", label: "flow completion rate · Qualoo", tag: "stat / completion" },
+      { k: "s4", value: "8 weeks", label: "roadmap built from sales, marketing and SEO requests · Childcare marketplace", tag: "stat / roadmap" }
+    ].map(function (s) { return Object.assign({}, s, dk(s.k, 1), { ink: t.accentInk, muted: t.muted, acc: t.accent, bgc: t.bg, bd: t.border }); });
+
+    var CHIP = ["#FFE3D8", "#DCEBFF", "#E3F4E8", "#FFF1C2"];
+    var ALL = {
+      platform: { kind: "b2b / childcare marketplace", art: "roadmap", title: "From roadmap to design system", desc: "Turned requests from three teams into one roadmap in my first three weeks, then built the provider portal's design system.", chips: ["Roadmap & priorities", "~24 screens", "AI-assisted"] },
+      evadav: { kind: "mobile / evadav", art: "nda", title: "Evadav apps", desc: "Many iOS and Android apps, from VPNs to trackers and calorie calculators. The screens are under NDA, the results are not.", chips: ["iOS & Android", "A/B tests", "Design system"] },
+      collectors: { kind: "web3 / colt cz group", img: "/images/cz.webp", alt: "Collector's Hub home page", title: "Collector's Hub", desc: "An auction platform for digital ownership, designed end to end with its own design system.", chips: ["Web3", "Auctions", "Design system"] },
+      website: { kind: "seo-geo / childcare marketplace", art: "seo", title: "Ready for AI search", desc: "A GEO/SEO audit, new landing pages and a data check that changed what the team tested first.", chips: ["GEO / SEO", "GA4", "A/B planning"] },
+      qualoo: { kind: "mobile / qualoo", img: "/images/qu.webp", alt: "Qualoo app screens", title: "Qualoo", desc: "A network-mapping app made simple, from setup to the first contribution.", chips: ["+30% completion", "iOS & Android", "Gamification"] },
+      aetlas: { kind: "b2b / carbon marketplace", img: "/images/ae.webp", alt: "Aetlas commitments dashboard", title: "Aetlas", desc: "A carbon credit marketplace with portals for buyers and project developers.", chips: ["B2B", "2 portals", "Front-end"] }
+    };
+    var ORDER = {
+      recruiter: ["platform", "evadav", "collectors", "website", "qualoo", "aetlas"],
+      founder: ["platform", "website", "evadav", "aetlas", "collectors", "qualoo"],
+      engineer: ["collectors", "platform", "aetlas", "qualoo", "website", "evadav"]
+    };
+    var ROT = [-1.4, 1.1, -0.8, 1.6, -1.2, 0.9];
+    var MT = [0, 22, 6, 18, 0, 26];
+    var projects = (ORDER[aud] || ORDER.recruiter).map(function (id, i) {
+      var p = ALL[id];
+      return Object.assign({}, p, {
+        num: "0" + (i + 1), acc: t.accent,
+        hasImg: !!p.img, img: p.img || "", alt: p.alt || "",
+        isRoadmap: p.art === "roadmap", isSeo: p.art === "seo", isNda: p.art === "nda",
+        chips: p.chips.map(function (label, j) { return { label: label, bg: CHIP[j % CHIP.length] }; }),
+        rot: ROT[i], mt: MT[i]
+      });
+    });
+
+    var log = [
+      { v: "v6", when: "2026", role: "Product Designer (Contract) — Care for Kids, Highwatch AI", text: "Roadmap and design system for a B2B provider portal, SEO/GEO and analytics for a marketplace website, data-heavy insurance SaaS workflows." },
+      { v: "v5", when: "2025 – 2026", role: "Product Designer — Cobalt Creative Agency", text: "Product pages and flows for e-commerce brands, backed by CRO audits." },
+      { v: "v4", when: "2024 – 2025", role: "Product Designer, UX/UI — Evadav Traffic Group", text: "iOS and Android consumer apps: onboarding, paywalls and a shared design system." },
+      { v: "v3", when: "2024 – 2025", role: "Product Designer (Contract)", text: "EcoEquity, Vitura Health, WinSoft and Qualoo: a carbon marketplace, a website rebuild, UX research and a mobile redesign." },
+      { v: "v2", when: "2022 – 2024", role: "Product Designer — BlockTrust", text: "Web3 platforms, including Collector's Hub for Colt CZ Group." },
+      { v: "v1", when: "2021 – 2022", role: "UX/UI Designer — SupportYourApp", text: "Brand guidelines and internal websites." }
+    ].map(function (l, i) { return Object.assign({}, l, { tagBg: i === 0 ? t.accent : t.raised, tagFg: i === 0 ? t.onAccent : t.text, bd: t.border, mu: t.muted }); });
+
+    var onDragMove = function (e) {
+      var dr = self._drag;
+      if (!dr) return;
+      var np = Object.assign({}, self.state.pos || {});
+      np[dr.k] = { x: dr.ox + (e.clientX - dr.sx) / dr.s, y: dr.oy + (e.clientY - dr.sy) / dr.s };
+      self.setState({ pos: np });
+    };
+    var onDragEnd = function () {
+      if (!self._drag) return;
+      self._drag = null;
+      self.setState({ drag: null });
+    };
+    var onMove = function (e) {
+      if (self._drag) return;
+      var el = e.currentTarget;
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      var s = el.offsetWidth ? r.width / el.offsetWidth : 1;
+      self.setState({ mx: (e.clientX - r.left) / s, my: (e.clientY - r.top) / s, inside: true });
+    };
+
+    return Object.assign({}, t, {
+      auds: auds, modes: modes, swatches: swatches, stats: stats, projects: projects, log: log, d: d,
+      reset: function () { self._drag = null; self.setState({ pos: {}, top: null, drag: null }); },
+      aud: aud, audLabel: LABELS[aud], modeName: modeId, accentId: accentId,
+      isRecruiter: aud === "recruiter", isFounder: aud === "founder", isEngineer: aud === "engineer",
+      grid: gridOn, gridPressed: gridOn ? "true" : "false", gridLabel: gridOn ? "on" : "off",
+      gridTint: "rgba(" + acc.rgb + ", 0.14)",
+      trackBg: gridOn ? t.accent : "transparent", trackBd: gridOn ? t.accent : t.border,
+      knobBg: gridOn ? t.onAccent : t.muted, knobX: gridOn ? 24 : 0,
+      toggleGrid: function () { self.setState({ grid: !gridOn }); },
+      onDragMove: onDragMove, onDragEnd: onDragEnd,
+      onMove: onMove, onLeave: function () { self.setState({ inside: false }); },
+      showYou: !!st.inside && !st.drag,
+      youX: Math.round((st.mx || 0) + 16),
+      youY: Math.round((st.my || 0) + 20)
+    });
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Yuliia Shevchenko — Product Designer (UX/UI)",
+    "description": "Product designer with 5+ years in B2B SaaS, Web3, marketplaces and consumer apps. I turn complex products into clear, usable systems.",
+    "name": "Yuliia Shevchenko",
+    "role": "product designer",
+    "email": "work.uliia@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/uliia-shevchenko/",
+    "behance": "https://www.behance.net/yuliiashevche4",
+    "cv": "/cv/Yuliia_Shevchenko_Product_Designer_CV.pdf",
+    "location": "Barcelona · CET",
+    "status": "Open to full-time roles"
+  },
+  "nav": [
+    { "label": "Work", "href": "/#work" },
+    { "label": "About", "href": "/#about" },
+    { "label": "Changelog", "href": "/#changelog" }
+  ],
+  "hero": {
+    "recruiter": {
+      "title": "I turn complex products into clear, usable",
+      "highlight": "systems.",
+      "after": "",
+      "text": "Product designer with 5+ years in B2B SaaS, Web3, marketplaces and consumer apps. End to end, from research and roadmap to design systems and handoff. Based in Barcelona, working remotely.",
+      "primary": { "label": "Download CV", "href": "cv" },
+      "secondary": { "label": "See selected work", "href": "/#work" }
+    },
+    "founder": {
+      "title": "Your product is complex. Your users shouldn't",
+      "highlight": "feel it.",
+      "after": "",
+      "text": "I gather what every team needs, decide what matters first and turn it into a roadmap and a system your team can build on. Carbon markets, Web3 auctions, B2B portals: dense by nature, clear by design.",
+      "primary": { "label": "Tell me about your product", "href": "email" },
+      "secondary": { "label": "See the work", "href": "/#work" }
+    },
+    "engineer": {
+      "title": "Designs that",
+      "highlight": "survive",
+      "after": "implementation.",
+      "text": "Variables, components, states and edge cases come with the handoff. I write HTML, CSS and React, and build design systems with Claude Code and Figma MCP.",
+      "primary": { "label": "See the systems", "href": "/#work" },
+      "secondary": { "label": "Email me", "href": "email" }
+    }
+  },
+  "inspector": {
+    "title": "Inspector",
+    "subtitle": "This page is a product. Go on, adjust it.",
+    "gridToggle": "Show the 12-column grid"
+  },
+  "stickyNote": "Psst. Anything that gets a frame on hover can be moved.",
+  "stats": [
+    { "value": "+25%", "label": "engagement from a tournament feature · Evadav", "tag": "stat / engagement" },
+    { "value": "−20%", "label": "onboarding drop-off after redesign · Evadav", "tag": "stat / drop-off" },
+    { "value": "+30%", "label": "flow completion rate · Qualoo", "tag": "stat / completion" },
+    { "value": "8 weeks", "label": "roadmap built from sales, marketing and SEO requests · Childcare marketplace", "tag": "stat / roadmap" }
+  ],
+  "work": {
+    "title": "Selected work",
+    "hoverSticker": "View case study",
+    "order": {
+      "recruiter": ["roadmap-to-design-system", "evadav", "collectors-hub", "ai-search-website", "qualoo", "aetlas"],
+      "founder": ["roadmap-to-design-system", "ai-search-website", "evadav", "aetlas", "collectors-hub", "qualoo"],
+      "engineer": ["collectors-hub", "roadmap-to-design-system", "aetlas", "qualoo", "ai-search-website", "evadav"]
+    },
+    "cards": {
+      "roadmap-to-design-system": { "kind": "b2b / childcare marketplace", "cover": "art:roadmap", "title": "From roadmap to design system", "desc": "Turned requests from three teams into one roadmap in my first three weeks, then built the provider portal's design system.", "facts": ["Roadmap & priorities", "~24 screens", "AI-assisted"] },
+      "evadav": { "kind": "mobile / evadav", "cover": "art:nda", "title": "Evadav apps", "desc": "Many iOS and Android apps, from VPNs to trackers and calorie calculators. The screens are under NDA, the results are not.", "facts": ["iOS & Android", "A/B tests", "Design system"] },
+      "collectors-hub": { "kind": "web3 / colt cz group", "cover": "/images/cz.webp", "coverAlt": "Collector's Hub home page", "title": "Collector's Hub", "desc": "An auction platform for digital ownership, designed end to end with its own design system.", "facts": ["Web3", "Auctions", "Design system"] },
+      "ai-search-website": { "kind": "seo-geo / childcare marketplace", "cover": "art:seo", "title": "Ready for AI search", "desc": "A GEO/SEO audit, new landing pages and a data check that changed what the team tested first.", "facts": ["GEO / SEO", "GA4", "A/B planning"] },
+      "qualoo": { "kind": "mobile / qualoo", "cover": "/images/qu.webp", "coverAlt": "Qualoo app screens", "title": "Qualoo", "desc": "A network-mapping app made simple, from setup to the first contribution.", "facts": ["+30% completion", "iOS & Android", "Gamification"] },
+      "aetlas": { "kind": "b2b / carbon marketplace", "cover": "/images/ae.webp", "coverAlt": "Aetlas commitments dashboard", "title": "Aetlas", "desc": "A carbon credit marketplace with portals for buyers and project developers.", "facts": ["B2B", "2 portals", "Front-end"] }
+    }
+  },
+  "about": {
+    "titleBefore": "I design with",
+    "highlight": "logic",
+    "titleAfter": ", not just visuals.",
+    "paragraphs": [
+      "I design web and mobile products for complex domains: B2B SaaS, marketplaces, Web3 platforms and AI tools. The focus is always the same: take something technically dense and make it feel obvious to the person using it.",
+      "Outside of work I customise clothes, and I've travelled to 36 countries. Both keep shaping how I think about people, behaviour and detail."
+    ],
+    "tools": ["Figma", "Claude Code", "Figma MCP", "GA4", "Jira", "HTML / CSS / React"],
+    "portrait": "/images/portrait.svg",
+    "portraitCaption": "me · ballpoint on notebook paper"
+  },
+  "changelog": {
+    "title": "Changelog",
+    "subtitle": "five years, newest first",
+    "items": [
+      { "v": "v6", "when": "2026", "role": "Product Designer (Contract) — Care for Kids, Highwatch AI", "text": "Roadmap and design system for a B2B provider portal, SEO/GEO and analytics for a marketplace website, data-heavy insurance SaaS workflows." },
+      { "v": "v5", "when": "2025 – 2026", "role": "Product Designer — Cobalt Creative Agency", "text": "Product pages and flows for e-commerce brands, backed by CRO audits." },
+      { "v": "v4", "when": "2024 – 2025", "role": "Product Designer, UX/UI — Evadav Traffic Group", "text": "iOS and Android consumer apps: onboarding, paywalls and a shared design system." },
+      { "v": "v3", "when": "2024 – 2025", "role": "Product Designer (Contract)", "text": "EcoEquity, Vitura Health, WinSoft and Qualoo: a carbon marketplace, a website rebuild, UX research and a mobile redesign." },
+      { "v": "v2", "when": "2022 – 2024", "role": "Product Designer — BlockTrust", "text": "Web3 platforms, including Collector's Hub for Colt CZ Group." },
+      { "v": "v1", "when": "2021 – 2022", "role": "UX/UI Designer — SupportYourApp", "text": "Brand guidelines and internal websites." }
+    ]
+  },
+  "contact": {
+    "titleBefore": "Let's ship something",
+    "highlight": "clear",
+    "titleAfter": ".",
+    "text": "Open to full-time remote product design roles."
+  },
+  "footer": {
+    "available": "Available",
+    "copyright": "© Yuliia Shevchenko 2026"
+  },
+  "cookieBanner": {
+    "title": "Cookies, briefly",
+    "text": "I'd like to see how people use this site (Microsoft Clarity and Google Analytics). Nothing is tracked until you say yes.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "privacyLink": "Privacy"
+  }
+}
