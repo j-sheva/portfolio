@@ -16,6 +16,7 @@
     { "label": "About", "href": "/#about" },
     { "label": "Changelog", "href": "/#changelog" }
   ],
+  "header": { "cv": "CV", "email": "Email me", "skipLink": "Skip to content" },
   "hero": {
     "recruiter": {
       "title": "I turn complex products into clear, usable",
@@ -99,11 +100,13 @@
     "titleBefore": "Let's ship something",
     "highlight": "clear",
     "titleAfter": ".",
-    "text": "Open to full-time remote product design roles."
+    "text": "Open to full-time remote product design roles.",
+    "buttons": { "cv": "Download CV", "linkedin": "LinkedIn", "behance": "Behance" }
   },
   "footer": {
     "available": "Available",
-    "copyright": "© Yuliia Shevchenko 2026"
+    "copyright": "© Yuliia Shevchenko 2026",
+    "cookieSettings": "Cookie settings"
   },
   "cookieBanner": {
     "title": "Cookies, briefly",
